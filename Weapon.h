@@ -5,37 +5,36 @@
 #ifndef PLATFORMDUNGEON_WEAPON_H
 #define PLATFORMDUNGEON_WEAPON_H
 
+#include "EnumFile.h"
 
 class Weapon {
 public:
-    explicit Weapon(bool st= false, bool b= false, bool sw= false) : stick(st), bow(b), sword(sw) {}//st-stick, b-bow, sw-sword
-    int attack();
-    int damage();
+    explicit Weapon(int tWeapon, int mWeapon) {
+        int danno=1;
+    }//st-stick, b-bow, sw-sword hanno tutte danno = 1
 
-    void setStick(int st) {
-        stick=st;
+    int damage;
+
+    int damageForMaterial (){
+        if (materialWeapon == wood){
+            damage=1;
+        }
+        else if (materialWeapon == iron){
+            damage=3;
+        }
+        else if (materialWeapon == steel){
+            damage=5;
+        }
+        else if (materialWeapon ==valyria){
+            damage=10;
+        }
     }
-    int getStick() {
-        return stick;
-    }
-    void setBow(int b) {
-        bow=b;
-    }
-    int getBow() {
-        return bow;
-    }
-    void setSword(int sw) {
-        sword=sw;
-    }
-    int getSword() {
-        return sword;
-    }
+
+    int attack();
 
 private:
-    bool stick;
-    bool bow;
-    bool sword;
-
+    int typeWeapon;
+    int materialWeapon;
 };
 
 

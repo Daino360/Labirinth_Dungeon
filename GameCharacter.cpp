@@ -3,12 +3,15 @@
 //
 
 #include "GameCharacter.h"
+
+//attributi di eroi e nemici
 GameCharacter::GameCharacter(int h, int d, int a, int df) {
     hp = h;
     dexterity = d;
     attack = a;
     defense=df;
 }
+//Movimento di eroi e nemici
 void GameCharacter::move(int x, int y) {
     posX += x;
     if (posX <= 0)
@@ -17,13 +20,11 @@ void GameCharacter::move(int x, int y) {
     if (posY <= 0)
         posY = 0;
 }
-
+//Combattimento
 int GameCharacter::fight(GameCharacter &enemy) {
-    int damage = 1;
+    int damage = 1;//ogni attacco fa danno 1
     if (weapon != nullptr)
         damage = weapon->attack();
-    enemy.hp -= damage;
+    enemy.hp -= damage; //il nemico perde vita
     return damage;
 }
-
-

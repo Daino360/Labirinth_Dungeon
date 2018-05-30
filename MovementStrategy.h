@@ -10,8 +10,7 @@
 
 class MovementStrategy : public Strategy {
 public:
-    MovementStrategy();
-    int petrollingMovement();
+    int patrollingMovement();
     int toHeroMovement();
     Enemy *getEnemy() const {
         return enemy;

@@ -5,17 +5,19 @@
 #ifndef PLATFORMDUNGEON_GAMECHARACTER_H
 #define PLATFORMDUNGEON_GAMECHARACTER_H
 
-#include "Weapon.h"
 #include "Strategy.h"
+#include "Map.h"
+#include "Weapon.h"
+
 
 class GameCharacter {
 public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFICARE OGNI ARMA AD OGNI PERSONAGGIO
 
     GameCharacter(int h, int d, int a, int df);
-    GameCharacter();
+    ~GameCharacter(){};
 
     //h-hp, d-dexterity, a-attack, df-defense
-    void move(int x, int y);
+    virtual void move(int x, int y);
     int fight(GameCharacter& enemy);
     //Getter and Setter attributes
     int getHp() const {
@@ -65,13 +67,7 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
     void setPosY(int posY) {
         GameCharacter::posY = posY;
     }
-    Weapon *getWeapon() const {
-        return weapon;
-    }
 
-    void setWeapon(Weapon *weapon) {
-        GameCharacter::weapon = weapon;
-    }
     Strategy *getStrategy() const {
         return strategy;
     }
@@ -79,15 +75,26 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
     void setStrategy(Strategy *strategy) {
         GameCharacter::strategy = strategy;
     }
+    Weapon *getWeapon() const {
+        return weapon;
+    }
 
-private:
+    void setWeapon(Weapon *weapon) {
+        GameCharacter::weapon = weapon;
+    }
+
+
+protected:
     int hp;
     int dexterity;
     int attack;
     int defense;
     int posX, posY;
-    Weapon* weapon;
-    Strategy* strategy;
+
+    Strategy* strategy;//Puntatore che serve per composizione
+    Weapon* weapon; //Puntatore che serve per composizione
+    //Map* map;
+
 };
 
 

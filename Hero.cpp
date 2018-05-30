@@ -3,3 +3,7 @@
 //
 
 #include "Hero.h"
+
+void Hero::move(int x, int y) { //movimento dell' eroe
+    // TODO complete
+}
