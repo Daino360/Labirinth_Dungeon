@@ -1,5 +1,5 @@
 //
-// Created by Stefano on 24/11/2017.
+// Created by Giovanni on 24/11/2017.
 //
 
 #ifndef PLATFORMDUNGEON_MAP_H
@@ -82,6 +82,7 @@ private:
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
 };
+
 class MyTileMap : public  TileMap{
 public:
     MyTileMap(){};
