@@ -1,16 +1,11 @@
-#include <iostream>
 #include "Hero.h"
 #include "Enemy.h"
 
-int main() {
-    Hero* Giovanni = new Hero("Giovanni",enumTypeHero::wizard,100,60,60,60);
-    Enemy* Stefano = new Enemy(enumTypeEnemy::troll,1,2,20,20);
 
-   int damo = Giovanni->fight(*Stefano);
-    if (damo)
-        std::cout << "Troll hit: " << damo << std::endl;
-    if (Stefano->getHp() <= 0)
-        std::cout << "troll is dead" << std::endl;
+int main(int argc, char **argv) {
+    GameCharacter *Giovanni = Hero::GetHero();//created by factory
+    GameCharacter *Stefano = Enemy::GetEnemy(); //created by factory
+    TileMap *Fabrizio = new TileMap();
+    Fabrizio->renderMap(Giovanni->getCharacterSprite(), Stefano->getCharacterSprite(), Giovanni->getCharacterTexture());
     return 0;
-
 }

@@ -16,16 +16,16 @@ public:
     int damage;
 
     int damageForMaterial (){
-        if (materialWeapon == wood){
+        if (materialWeapon == (int) enumMaterial::wood){//int con il cast perchè abbiamo aggiunto class a enum file
             damage=1;
         }
-        else if (materialWeapon == iron){
+        else if (materialWeapon == (int) enumMaterial::iron){//int con il cast perchè abbiamo aggiunto class a enum file
             damage=3;
         }
-        else if (materialWeapon == steel){
+        else if (materialWeapon == (int) enumMaterial::steel){//int con il cast perchè abbiamo aggiunto class a enum file
             damage=5;
         }
-        else if (materialWeapon ==valyria){
+        else if (materialWeapon == (int) enumMaterial::valyria){//int con il cast perchè abbiamo aggiunto class a enum file
             damage=10;
         }
     }

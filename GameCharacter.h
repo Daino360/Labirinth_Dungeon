@@ -6,10 +6,15 @@
 #define PLATFORMDUNGEON_GAMECHARACTER_H
 
 #include "Strategy.h"
-#include "Map.h"
+#include "TileMap.h"
 #include "Weapon.h"
+#include <iostream>
 
 
+
+using namespace std;
+namespace sf{}
+using namespace sf;
 class GameCharacter {
 public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFICARE OGNI ARMA AD OGNI PERSONAGGIO
 
@@ -19,6 +24,8 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
     //h-hp, d-dexterity, a-attack, df-defense
     virtual void move(int x, int y);
     int fight(GameCharacter& enemy);
+    int fightHero(GameCharacter& hero);
+
     //Getter and Setter attributes
     int getHp() const {
         return hp;
@@ -83,6 +90,21 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
         GameCharacter::weapon = weapon;
     }
 
+    int putAttack() {
+        return attack;
+    }
+
+    void setUpSprite(std::string textureFileName);
+    void setUpSpriteEnemy(std::string textureFileName, int);
+
+    sf::Sprite getCharacterSprite(){
+        return characterSprite;
+    }
+
+    sf::Texture getCharacterTexture(){
+        return tx;
+    }
+
 
 protected:
     int hp;
@@ -90,10 +112,13 @@ protected:
     int attack;
     int defense;
     int posX, posY;
+    sf::Sprite characterSprite;
+    sf::Texture tx;
+    //int numEnemy;
 
     Strategy* strategy;//Puntatore che serve per composizione
     Weapon* weapon; //Puntatore che serve per composizione
-    //Map* map;
+
 
 };
 
