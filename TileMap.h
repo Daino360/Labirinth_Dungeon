@@ -74,7 +74,7 @@ private:
     int position;
     int width;
     int lenght;
-    double a,b,c;
+    double xPos,yPos,c;
     int newX, newY;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

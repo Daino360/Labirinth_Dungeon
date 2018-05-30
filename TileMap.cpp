@@ -57,7 +57,7 @@ int TileMap::renderMap(sf::Sprite characterS, sf::Sprite characterSE, sf::Textur
     bool updateFrame=true;
     float frameCounter = 0, switchFrame = 100, frameSpeed = 500;
 
-// create the tilemap from the level definition con colori casuali
+// create the tilemap from the level definition
     TileMap map;
     Die::initRandom();
     Die die(5);
@@ -78,14 +78,15 @@ int TileMap::renderMap(sf::Sprite characterS, sf::Sprite characterSE, sf::Textur
         if (!map.load("Tileset/Tileset5.jpg", sf::Vector2u(32, 32), level, 58, 33)){
             std::cout << "Texture Error" << std::endl;}
     }
-    //if (!map.load("Tileset/Tileset1.png", sf::Vector2u(32, 32), level, 58, 33))
-    //    std::cout << "Texture Error" << std::endl;
 
     //Characters Movements
     enum Direction {Down,Left,Right,Up};
     sf::Vector2i source(1, Down);
 
-    characterS.setTextureRect(sf::IntRect(72, 3, 20, 38));
+    characterS.setTextureRect(sf::IntRect(16, 16, 64, 96));
+    //characterS.setOrigin(32,48);
+    //characterS.setOrigin({ 32, 48});
+
 
 // run the main loop (GAME LOOP)
     while (window.isOpen())
@@ -103,60 +104,59 @@ int TileMap::renderMap(sf::Sprite characterS, sf::Sprite characterSE, sf::Textur
 
                         case sf::Keyboard::Up:
                             source.y = Up;
-                            characterS.setTextureRect(sf::IntRect(135, 3, 20, 38));
-                            //characterS.setTextureRect(sf::IntRect(135, 40, 20, 38));
-                            a = ((characterS.getPosition().x/32));
-                            b = ((characterS.getPosition().y/32));
-                            newX = a;
-                            newY = b-1;
+                            //characterS.setTextureRect(sf::IntRect(135, 3, 20, 38));
+                            //characterS.setTextureRect(sf::IntRect(72, 3, 20, 38));
+                            //characterS.setOrigin({ 0, characterS.getLocalBounds().height });
+
+                            xPos = round((characterS.getPosition().x/32));
+                            yPos = round((characterS.getPosition().y/32));
+                            newX = xPos;
+                            newY = yPos-1;
                             tile = level[newX + newY*58];
-                            if (tile==0)
-                                characterS.move(0, 0);
-                            else
-                                characterS.move(0, -6);
+                            if (tile!=0)
+                                characterS.move(0, -16);
                             break;
                         case sf::Keyboard::Down:
                             source.y = Down;
-                            characterS.setTextureRect(sf::IntRect(72, 3, 20, 38));
-                            a = ((characterS.getPosition().x/32)); //da rimettere round
-                            b = ((characterS.getPosition().y/32));
-                            newX = a;
-                            newY = b+2;
+                            //characterS.setTextureRect(sf::IntRect(72, 3, 20, 38));
+                            //characterS.setOrigin({ 0, characterS.getLocalBounds().height });
+
+                            xPos = round((characterS.getPosition().x/32));
+                            yPos = round((characterS.getPosition().y/32));
+                            newX = xPos;
+                            newY = yPos+1;
                             tile = level[newX + newY*58];
-                            if (tile==0)
-                                characterS.move(0, 0);
-                            else
-                                characterS.move(0, 6);
+                            if (tile!=0)
+                                characterS.move(0, 16);
                             break;
                         case sf::Keyboard::Right:
                             source.x = Right;
-                            characterS.setTextureRect(sf::IntRect(10, 2, 20, 38));
-                            characterS.setOrigin({ characterS.getLocalBounds().width, 0 });
-                            characterS.setScale({ -2, 2 });
-                            a = ((characterS.getPosition().x/32));
-                            b = ((characterS.getPosition().y/32));
-                            newX = a+1;
-                            newY = b;
+                            //characterS.setTextureRect(sf::IntRect(72, 3, 20, 38));
+                            //characterS.setTextureRect(sf::IntRect(10, 2, 20, 38));
+                            //characterS.setOrigin({ characterS.getLocalBounds().width, 0 });
+                            //characterS.setScale({ -2, 2 });
+                            xPos = round((characterS.getPosition().x/32));
+                            yPos = round((characterS.getPosition().y/32));
+                            newX = xPos+1;
+                            newY = yPos;
                             tile = level[newX + newY*58];
-                            if (tile==0)
-                                characterS.move(0, 0);
-                            else
-                                characterS.move(6, 0);
+                            if (tile!=0)
+                                characterS.move(16, 0);
                             break;
                         case sf::Keyboard::Left:
                             source.x = Left;
-                            characterS.setTextureRect(sf::IntRect(10, 2, 20, 38));
-                            characterS.setOrigin({ 0, 0 });
-                            characterS.setScale({ 2, 2 });
-                            a = ((characterS.getPosition().x/32));
-                            b = ((characterS.getPosition().y/32));
-                            newX = a-1;
-                            newY = b;
+                            //characterS.setTextureRect(sf::IntRect(10, 2, 20, 38));
+                            //characterS.setOrigin({ 0, 0 });
+                            //characterS.setScale({ 2, 2 });
+                            //characterS.setOrigin({ characterS.getLocalBounds().width, 0 });
+
+                            xPos = round((characterS.getPosition().x/32));
+                            yPos = round((characterS.getPosition().y/32));
+                            newX = xPos-1;
+                            newY = yPos;
                             tile = level[newX + newY*58];
-                            if (tile==0)
-                                characterS.move(0, 0);
-                            else
-                                characterS.move(-6, 0);
+                            if (tile!=0)
+                                characterS.move(-16, 0);
                             break;
                         case sf::Keyboard::Escape:
                             window.close();
@@ -183,18 +183,18 @@ int TileMap::renderMap(sf::Sprite characterS, sf::Sprite characterSE, sf::Textur
                     source.y = 0;
             }
             if(sf::Keyboard::Up){
-                characterS.setTextureRect(sf::IntRect(source.x * 135, source.y * 3, 20, 38));
+                characterS.setTextureRect(sf::IntRect(source.x * 16, source.y * 16, 64, 96));
             }
             if(sf::Keyboard::Down){
-                characterS.setTextureRect(sf::IntRect(source.x * 72, source.y * 3, 20, 38));
+                characterS.setTextureRect(sf::IntRect(source.x * 16, source.y * 16, 64, 96));
             }
             if(sf::Keyboard::Right){
-                characterS.setTextureRect(sf::IntRect(source.x * 1, source.y * 3, 20, 38));
+                characterS.setTextureRect(sf::IntRect(source.x * 16, source.y * 16, 64, 96));
             }
             if(sf::Keyboard::Left){
-                characterS.setTextureRect(sf::IntRect(source.x * 10, source.y * 3, 20, 38));
-            }*/
-
+                characterS.setTextureRect(sf::IntRect(source.x * 16, source.y * 16, 64, 96));
+            }
+*/
         }
 
 // draw the map

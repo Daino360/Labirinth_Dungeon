@@ -51,21 +51,21 @@ Hero* Hero::Create(enumTypeHero type)
         case archer:
         {
             Hero * h = new Hero("Legolas",archer,100,200,150,50);
-            h->setUpSprite("archer2.png");
+            h->setUpSprite("archer3.png");
             return h;
             break;
         }
         case warrior:
         {
             Hero * h = new Hero("Aragon", warrior, 150, 50, 100, 200);
-            h->setUpSprite("warrior2.png");
+            h->setUpSprite("warriorL.png");
             return h;
             break;
         }
         case wizard:
         {
             Hero * h = new Hero("Gandalf", wizard, 90, 150, 200, 50);
-            h->setUpSprite("wizard2.png");
+            h->setUpSprite("wizard.png");
             return h;
             break;
         }

@@ -53,7 +53,7 @@ Enemy* Enemy::Create(enumTypeEnemy type, int idEnemy)
         case ghoul:
         {
             Enemy * h = new Enemy(ghoul,10,80,30,5);
-            h->setUpSpriteEnemy("ghoul2.png", idEnemy);
+            h->setUpSpriteEnemy("ghoul3.png", idEnemy);
             return h;
             break;
         }

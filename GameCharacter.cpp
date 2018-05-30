@@ -41,9 +41,9 @@ void GameCharacter::setUpSprite(std::string textureFileName){
         std::cout << "Texture Error" << std::endl;
     }
     characterSprite.setTexture(tx);
-    characterSprite.scale(2.0f, 2.0f); // reduce dimensions of Character (right dimensions: 0.1f)
-    characterSprite.setPosition(790, 10); // initial position of Character*/
-
+    characterSprite.scale(0.5f, 0.5f); // reduce dimensions of Character (right dimensions: 0.1f)
+    characterSprite.setPosition(32,32); // initial position of Character
+    //characterSprite.setOrigin(10, 19);
 }
 
 void GameCharacter::setUpSpriteEnemy(std::string textureFileName, int idEnemy){
@@ -55,29 +55,24 @@ void GameCharacter::setUpSpriteEnemy(std::string textureFileName, int idEnemy){
             y1=3;
             x2=65;
             y2=65;
-            characterSprite.scale(1.0f, 1.0f); // reduce dimensions of Character (right dimensions: 0.1f)
             break;
         case 1:
-            x1=72;
-            y1=3;
-            x2=20;
-            y2=38;
-            characterSprite.scale(2.0f, 2.0f); // reduce dimensions of Character (right dimensions: 0.1f)
+            x1=40;
+            y1=40;
+            x2=75;
+            y2=75;
             break;
         case 2:
-            x1=53;
-            y1=0;
-            x2=40;
-            y2=50;
-            characterSprite.scale(2.0f, 2.0f); // reduce dimensions of Character (right dimensions: 0.1f)
+            x1=10;
+            y1=13;
+            x2=85;
+            y2=85;
             break;
         case 3:
-            x1=53;
+            x1=45;
             y1=0;
-            x2=40;
-            y2=50;
-            characterSprite.scale(2.0f, 2.0f); // reduce dimensions of Character (right dimensions: 0.1f)
-
+            x2=65;
+            y2=65;
             break;
 
     }
