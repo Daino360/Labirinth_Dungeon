@@ -7,10 +7,10 @@
 
 
 class Strategy {
+
 public:
-    Strategy();
-    int getIncrease();
-    int setIncrease();
+    virtual int getIncrease();
+    virtual int setIncrease();
 
 };
 

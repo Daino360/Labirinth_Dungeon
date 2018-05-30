@@ -10,9 +10,8 @@
 
 class AttackStrategy : public Strategy {
 public:
-    AttackStrategy();
-    int slowAttack();
-    int rapidAttack();
+    int slowAttack(); //slow per Orc e Troll
+    int rapidAttack();//rapid per Goblin e Ghoul
     Enemy *getEnemy() const {
         return enemy;
     }

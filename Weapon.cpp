@@ -4,10 +4,8 @@
 
 #include "Weapon.h"
 
-int Weapon::attack() {// attack si intende il danno effettivo
+int Weapon::attack() {// attack si intende il danno effettivo da aggiungere il danno damage del tipo di materiale
 
 
 }
-int Weapon::damage() {// damage ci fa capire quale arma stiamo usando
 
-}
