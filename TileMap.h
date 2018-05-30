@@ -1,19 +1,26 @@
 //
-// Created by Giovanni on 24/11/2017.
+// Created by Stefano on 24/11/2017.
 //
 
 #ifndef PLATFORMDUNGEON_MAP_H
 #define PLATFORMDUNGEON_MAP_H
 
 
-#include "Store.h"
-#include "GameCharacter.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Config.hpp>
+#include <SFML/OpenGL.hpp>
+#include <SFML/Main.hpp>
 #include <string>
+#include "GameCharacter.h"
+#include "Store.h"
+
 class TileMap : public sf::Drawable, public sf::Transformable{
 public:
-    TileMap(){}; // qui il costruttore lo lasciamo perchè Map non deriva da nessuna classe
+    TileMap(){}; // here we leave constructor because Map doesn't derive from any classes
     int changeMap();
     int getTile();
     int addCharacter();
@@ -59,6 +66,7 @@ public:
         return true;
     }
 
+    int renderMap(sf::Sprite, sf::Sprite, sf::Texture);
 
 private:
     int graphic;
@@ -66,7 +74,8 @@ private:
     int position;
     int width;
     int lenght;
-    //GameCharacter* gameCharacter;// Puntatore per ASSOCIAZIONE --> Il nostro rapporto è 1 a molti quindi ci serve una lista di puntatori in gamecharacter
+    double a,b,c;
+    int newX, newY;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         // apply the transform
@@ -82,7 +91,6 @@ private:
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
 };
-
 class MyTileMap : public  TileMap{
 public:
     MyTileMap(){};

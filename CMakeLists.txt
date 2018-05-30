@@ -5,18 +5,15 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(test)
 
+set(SOURCE_FILES Weapon.cpp Weapon.h GameCharacter.cpp GameCharacter.h Hero.cpp Hero.h Equipment.cpp Equipment.h Strategy.cpp Strategy.h AttackStrategy.cpp AttackStrategy.h Enemy.cpp Enemy.h MovementStrategy.cpp MovementStrategy.h Store.cpp Store.h EnumFile.h Die.cpp Die.h TileMap.cpp TileMap.h)
 
-set(SOURCE_FILES main.cpp GameCharacter.cpp GameCharacter.h Hero.cpp Hero.h TileMap.cpp TileMap.h)
-add_executable(PlatformDungeon ${SOURCE_FILES} TileMap.cpp TileMap.h Hero.cpp Hero.h Equipment.cpp Equipment.h Strategy.cpp Strategy.h AttackStrategy.cpp AttackStrategy.h Enemy.cpp Enemy.h MovementStrategy.cpp MovementStrategy.h Store.cpp Store.h EnumFile.h Die.cpp Die.h FactoryH.cpp FactoryH.h)
-
-add_library(core ${SOURCE_FILES} Weapon.cpp Weapon.h Equipment.cpp Equipment.h Strategy.cpp Strategy.h AttackStrategy.cpp AttackStrategy.h Enemy.cpp Enemy.h MovementStrategy.cpp MovementStrategy.h Store.cpp Store.h TileMap.cpp TileMap.h EnumFile.h Factory.cpp Factory.h Die.cpp Die.h FactoryH.cpp FactoryH.h Mappetta.txt)
-target_link_libraries(PlatformDungeon core)
-
+add_library(core ${SOURCE_FILES})
 
 # Define sources and executable
 
 set(EXECUTABLE_NAME "myproject")
-add_executable(${EXECUTABLE_NAME} main.cpp Weapon.cpp Weapon.h GameCharacter.cpp GameCharacter.h Hero.cpp Hero.h Equipment.cpp Equipment.h Strategy.cpp Strategy.h AttackStrategy.cpp AttackStrategy.h Enemy.cpp Enemy.h MovementStrategy.cpp MovementStrategy.h Store.cpp Store.h EnumFile.h Die.cpp Die.h FactoryH.cpp FactoryH.h Factory.h Factory.cpp)
+add_executable(${EXECUTABLE_NAME} main.cpp)
+target_link_libraries(${EXECUTABLE_NAME} core)
 
 # Detect and add SFML
 

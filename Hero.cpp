@@ -3,8 +3,6 @@
 //
 
 #include "Hero.h"
-#include "FactoryH.h"
-#include "EnumFile.h"
 
 using namespace std;
 
@@ -14,88 +12,62 @@ void Hero::move(int x, int y) { //movimento dell' eroe
 
 using namespace std;
 
-Hero *Hero::GetHero() {
+GameCharacter *Hero::GetHero() {
 
     char chooseName[11];
-    std::cout << "Choose name of your Hero!\n";
-    std::cin >> chooseName;
+    cout << "Choose name of your Hero!\n";
+    cin >> chooseName;
     chooseName[10] = 0;
     printf("Your hero's name is %s\n", chooseName);
 
-    Hero *pHero = NULL;
+    GameCharacter *pHero = NULL;
     int chooseTypeHero;
 
-    std::cout << "Choose type of your Hero, between: select 0 for archer , select 1 for warrior , select 2 for wizard\n";
-    std::cin >> chooseTypeHero;
+    cout << "Choose type of your Hero, between: select 0 for archer , select 1 for warrior , select 2 for wizard\n";
+    cin >> chooseTypeHero;
 
     //enumTypeHero tHero = (enumTypeHero) chooseTypeHero;
 
     if (chooseTypeHero == 0) {
-        pHero = FactoryH::Get()->CreateHero(chooseTypeHero);
+        pHero = Hero::Create(archer);
         cout << "Your Hero is a Archer\n";
     } else if (chooseTypeHero == 1) {
-        pHero = FactoryH::Get()->CreateHero(chooseTypeHero);
+        pHero = Hero::Create(warrior);
         cout << "Your Hero is a Warrior\n";
     } else if (chooseTypeHero == 2) {
-        pHero = FactoryH::Get()->CreateHero(chooseTypeHero);
+        pHero = Hero::Create(wizard);
         cout << "Your Hero is a Wizard\n";
     } else {
-        std::cout << "hai sbagliato a scegliere!\n";
+        cout << "hai sbagliato a scegliere!\n";
         return 0;
     }
     return pHero;
 }
 
-Hero *FactoryH::CreateHero(int &chooseTypeHero){
-
-    FactoryMapH::iterator it = m_FactoryMapH.find(chooseTypeHero);
-    if( it != m_FactoryMapH.end() )
-        return it->second();
-    return NULL;
-}
-
-/*
-Hero *Hero::GetHero() {
-
-    Hero *pHero = NULL;
-    std::string heroName;
-    int chooseTypeHero;
-
-    std::cout << "Choose type of your Hero, between: select 0 for archer , select 1 for warrior , select 2 for wizard\n";
-    std::cin >> chooseTypeHero;
-
-    enumTypeHero tHero = (enumTypeHero) chooseTypeHero;
-
-    if (chooseTypeHero == 0) {
-        heroName = "Archer";
-        pHero = Factory::Get()->CreateHero(chooseTypeHero);
-    } else if (chooseTypeHero == 1) {
-        heroName = "Warrior";
-        pHero = Factory::Get()->CreateHero(chooseTypeHero);
-    } else if (chooseTypeHero == 2) {
-        heroName = "Wizard";
-        pHero = Factory::Get()->CreateHero(chooseTypeHero);
-    } else {
-        std::cout << "hai sbagliato a scegliere!\n";
-        return 0;
+Hero* Hero::Create(enumTypeHero type)
+{
+    switch (type)
+    {
+        case archer:
+        {
+            Hero * h = new Hero("Legolas",archer,100,200,150,50);
+            h->setUpSprite("archer2.png");
+            return h;
+            break;
+        }
+        case warrior:
+        {
+            Hero * h = new Hero("Aragon", warrior, 150, 50, 100, 200);
+            h->setUpSprite("warrior2.png");
+            return h;
+            break;
+        }
+        case wizard:
+        {
+            Hero * h = new Hero("Gandalf", wizard, 90, 150, 200, 50);
+            h->setUpSprite("wizard2.png");
+            return h;
+            break;
+        }
     }
-    cout << "Your Hero is a \n" << heroName;
-    return pHero;
 }
-
-
-Hero *Factory::CreateHero(int &chooseTypeHero) {
-
-    FactoryMapH::iterator it = m_FactoryMapH.find(chooseTypeHero);//hero name è l' enum type hero ovvero il tipo di eroe
-    if (it != m_FactoryMapH.end())
-        return it->second();
-    return NULL;
-}
-
-/*char *Hero::getChooseName() {
-
-    std::cout << "Choose name of your Hero!\n";
-    printf("Your hero's name is %s\n", chooseName);
-    chooseName[10] = 0;
-    std::cin >> chooseName;
-}*/

@@ -8,12 +8,15 @@
 #include "Strategy.h"
 #include "TileMap.h"
 #include "Weapon.h"
+#include <iostream>
 
 
+
+using namespace std;
+namespace sf{}
+using namespace sf;
 class GameCharacter {
 public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFICARE OGNI ARMA AD OGNI PERSONAGGIO
-
-    //GameCharacter(){};
 
     GameCharacter(int h, int d, int a, int df);
     ~GameCharacter(){};
@@ -22,6 +25,7 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
     virtual void move(int x, int y);
     int fight(GameCharacter& enemy);
     int fightHero(GameCharacter& hero);
+
     //Getter and Setter attributes
     int getHp() const {
         return hp;
@@ -90,6 +94,17 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
         return attack;
     }
 
+    void setUpSprite(std::string textureFileName);
+    void setUpSpriteEnemy(std::string textureFileName, int);
+
+    sf::Sprite getCharacterSprite(){
+        return characterSprite;
+    }
+
+    sf::Texture getCharacterTexture(){
+        return tx;
+    }
+
 
 protected:
     int hp;
@@ -97,10 +112,13 @@ protected:
     int attack;
     int defense;
     int posX, posY;
+    sf::Sprite characterSprite;
+    sf::Texture tx;
+    //int numEnemy;
 
     Strategy* strategy;//Puntatore che serve per composizione
     Weapon* weapon; //Puntatore che serve per composizione
-    //Map* map;
+
 
 };
 

@@ -25,11 +25,11 @@ enum enumTypeHero : int {
     wizard
 };
 
-enum enumTypeEnemy : int {
-    goblin,
-    ghoul,
-    orc,
-    troll
+enum enumTypeEnemy : int {//10,11,12,13 per evitare collisione con enumerazione eroi.
+    goblin = 10,
+    ghoul = 11,
+    orc = 12,
+    troll = 13
 };
 
 #endif //PLATFORMDUNGEON_ENUMFILE_H
