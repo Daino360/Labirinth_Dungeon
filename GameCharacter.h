@@ -6,12 +6,14 @@
 #define PLATFORMDUNGEON_GAMECHARACTER_H
 
 #include "Strategy.h"
-#include "Map.h"
+#include "TileMap.h"
 #include "Weapon.h"
 
 
 class GameCharacter {
 public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFICARE OGNI ARMA AD OGNI PERSONAGGIO
+
+    //GameCharacter(){};
 
     GameCharacter(int h, int d, int a, int df);
     ~GameCharacter(){};
