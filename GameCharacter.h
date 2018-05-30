@@ -19,6 +19,7 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
     //h-hp, d-dexterity, a-attack, df-defense
     virtual void move(int x, int y);
     int fight(GameCharacter& enemy);
+    int fightHero(GameCharacter& hero);
     //Getter and Setter attributes
     int getHp() const {
         return hp;
@@ -81,6 +82,10 @@ public://DEVO FARE DEI COSTRUTTORI DI DEFAULT QUI NELL HEADER PER POTER SPECIFIC
 
     void setWeapon(Weapon *weapon) {
         GameCharacter::weapon = weapon;
+    }
+
+    int putAttack() {
+        return attack;
     }
 
 
